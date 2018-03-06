@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntelliTraceCPConfig", "IntelliTraceCPConfig\IntelliTraceCPConfig.csproj", "{A46B17E4-4514-454A-BE3A-1A33AB514960}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SetupProject", "SetupProject\SetupProject.vdproj", "{636B3455-EDBB-49B9-BB6F-D333468F961A}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 3
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs37
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = IntelliTraceCPConfig\\IntelliTraceCPConfig.csproj
+		SccProjectName1 = IntelliTraceCPConfig
+		SccLocalPath1 = IntelliTraceCPConfig
+		SccProjectUniqueName2 = SetupProject\\SetupProject.vdproj
+		SccProjectName2 = SetupProject
+		SccLocalPath2 = SetupProject
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A46B17E4-4514-454A-BE3A-1A33AB514960}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A46B17E4-4514-454A-BE3A-1A33AB514960}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A46B17E4-4514-454A-BE3A-1A33AB514960}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A46B17E4-4514-454A-BE3A-1A33AB514960}.Release|Any CPU.Build.0 = Release|Any CPU
+		{636B3455-EDBB-49B9-BB6F-D333468F961A}.Debug|Any CPU.ActiveCfg = Debug
+		{636B3455-EDBB-49B9-BB6F-D333468F961A}.Release|Any CPU.ActiveCfg = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
