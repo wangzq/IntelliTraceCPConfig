@@ -96,10 +96,10 @@
         private void BtnAddAssembliesClick(object sender, RoutedEventArgs e)
         {
             var dialog = new OpenFileDialog
-                             {
-                                 InitialDirectory = _defaultPath,
-                                 Filter = "DLL and Executables (*.dll, *.exe)|*.dll*;*.exe"
-                             };
+            {
+                InitialDirectory = _defaultPath,
+                Filter = "DLL and Executables (*.dll, *.exe)|*.dll*;*.exe"
+            };
 
             dialog.Multiselect = true;
             bool? result = dialog.ShowDialog();
@@ -150,7 +150,7 @@
         private void MaxamountRecordingSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             int dicFileSize;
-            var cbitem = (ComboBoxItem) MaxamountRecording.SelectedItem;
+            var cbitem = (ComboBoxItem)MaxamountRecording.SelectedItem;
             _len.TryGetValue(cbitem.Content.ToString(), out dicFileSize);
             IntelliTraceCPConfigViewModel.SetFileSizeValue(dicFileSize.ToString(CultureInfo.InvariantCulture));
         }
@@ -158,11 +158,11 @@
         private void OpenMenuClick(object sender, RoutedEventArgs e)
         {
             var dialog = new OpenFileDialog
-                             {
-                                 InitialDirectory = _defaultPath,
-                                 DefaultExt = ".xml",
-                                 Filter = "Xml documents (.xml)|*.xml"
-                             };
+            {
+                InitialDirectory = _defaultPath,
+                DefaultExt = ".xml",
+                Filter = "Xml documents (.xml)|*.xml"
+            };
 
             bool? result = dialog.ShowDialog();
             if (result == true)
@@ -196,15 +196,15 @@
 
                 bool traceInstrumenationEnabled = IntelliTraceCPConfigViewModel.GetTraceInstrumentation();
 
-                rbEventsOnly.IsChecked = traceInstrumenationEnabled;
-                rbEventsAndCall.IsChecked = !traceInstrumenationEnabled;
+                rbEventsOnly.IsChecked = !traceInstrumenationEnabled;
+                rbEventsAndCall.IsChecked = traceInstrumenationEnabled;
 
                 rbExcluded.IsChecked = isExcluded;
                 rbIncluded.IsChecked = !isExcluded;
 
                 foreach (var itm in _len)
                 {
-                    var citem = new ComboBoxItem {Content = itm.Key};
+                    var citem = new ComboBoxItem { Content = itm.Key };
                     if (fileSize == itm.Value)
                         citem.IsSelected = true;
                     MaxamountRecording.Items.Add(citem);
@@ -224,8 +224,7 @@
 
         private void SaveFile()
         {
-            var dialog = new SaveFileDialog
-                             {FileName = SelectedPath, DefaultExt = ".xml", Filter = "Xml documents (.xml)|*.xml"};
+            var dialog = new SaveFileDialog { FileName = SelectedPath, DefaultExt = ".xml", Filter = "Xml documents (.xml)|*.xml" };
 
             dialog.ShowDialog();
             XmlDocument xdoc = IntelliTraceCPConfigViewModel.GetModifiedDocument(modules);

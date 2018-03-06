@@ -1,4 +1,4 @@
-﻿<Window 
+﻿<Window
   x:Class="IntelliTraceCPConfig.Main"
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -6,7 +6,7 @@
   xmlns:dw="clr-namespace:DrWPF.Windows.Controls"
   FontSize="13"
   Title="IntelliTrace Collection Plan Configurator"
-  Width="435" Height="457" 
+  Width="435" Height="457"
   WindowStartupLocation="CenterScreen" Padding="0" Margin="0" WindowStyle="SingleBorderWindow" BorderThickness="10,0" Foreground="White" BorderBrush="White" OpacityMask="White">
     <Window.Resources>
         <ResourceDictionary>
@@ -23,19 +23,19 @@
                 <Setter Property="dw:VirtualToggleButton.IsChecked" Value="{Binding IsChecked}" />
             </Style>
 
-            <HierarchicalDataTemplate 
+            <HierarchicalDataTemplate
         x:Key="CheckBoxItemTemplate"
         ItemsSource="{Binding Children, Mode=OneTime}"
         >
                 <StackPanel Orientation="Horizontal">
                     <CheckBox
-            Focusable="False" 
+            Focusable="False"
             Tag ="{Binding TagKey}"
             IsChecked="{Binding IsChecked}"
             VerticalAlignment="Center"
             />
-                    <ContentPresenter 
-            Content="{Binding Name, Mode=OneTime}" 
+                    <ContentPresenter
+            Content="{Binding Name, Mode=OneTime}"
             Margin="2,0"
             />
                 </StackPanel>
@@ -44,7 +44,7 @@
     </Window.Resources>
 
     <Window.DataContext>
-        <ObjectDataProvider 
+        <ObjectDataProvider
       MethodName="CreateTreeData"
       ObjectType="{x:Type local:IntelliTraceCPConfigViewModel}" />
     </Window.DataContext>
@@ -59,10 +59,10 @@
             <MenuItem Header="_About" Click="AboutMenuClick" />
         </Menu>
 
-        <Button 
-      DockPanel.Dock="Bottom" 
+        <Button
+      DockPanel.Dock="Bottom"
       Name="btnSave"
-      Content="Save" 
+      Content="Save"
       HorizontalAlignment="Center"
       Margin="0,2"
       Padding="8,0" Click="ButtonClick" Height="32" Width="93" VerticalAlignment="Stretch" IsEnabled="False" />
@@ -70,7 +70,7 @@
             <TabItem Header="General" Name="tabGeneral" >
                 <Grid Name="grdGeneral">
                     <RadioButton Content="IntelliTrace events only" Name="rbEventsOnly" Height="16" HorizontalAlignment="Left" Margin="27,71,0,0"  VerticalAlignment="Top" GroupName="rbGEneral" FontWeight="Bold" Checked="rbEventsOnly_Checked" />
-                    <RadioButton Content="IntelliTrace events and call informationRadioButton" Name="rbEventsAndCall" Height="16" HorizontalAlignment="Left" Margin="27,128,0,0"  VerticalAlignment="Top" GroupName="rbGEneral" FontWeight="Bold" Checked="rbEventsAndCall_Checked" />
+                    <RadioButton Content="IntelliTrace events and call information" Name="rbEventsAndCall" Height="16" HorizontalAlignment="Left" Margin="27,128,0,0"  VerticalAlignment="Top" GroupName="rbGEneral" FontWeight="Bold" Checked="rbEventsAndCall_Checked" />
                     <Label Content="Collect the following IntelliTrace information while debugging:" Height="28" HorizontalAlignment="Left" Margin="6,22,0,0" Name="label2" VerticalAlignment="Top" />
                     <Label Content="Collects IntelliTrace events only, which has minimal effects on performance" Height="29" HorizontalAlignment="Left" Margin="21,93,0,0" Name="label3" VerticalAlignment="Top" Width="375" FontSize="11" />
                     <Label Content="Collects call information, which can degrade application performance" FontSize="11" Height="29" HorizontalAlignment="Left" Margin="27,150,0,0" Name="label4" VerticalAlignment="Top" Width="375" />
@@ -78,7 +78,7 @@
             </TabItem>
             <TabItem Header="IntelliTrace Events" Name="tabEvents">
                 <Grid>
-                    <TreeView 
+                    <TreeView
       x:Name="tree"
       ItemContainerStyle="{StaticResource TreeViewItemStyle}"
       ItemsSource="{Binding Mode=OneTime}"
