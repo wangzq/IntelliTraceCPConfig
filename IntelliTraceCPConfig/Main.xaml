@@ -6,7 +6,8 @@
   xmlns:dw="clr-namespace:DrWPF.Windows.Controls"
   FontSize="13"
   Title="IntelliTrace Collection Plan Configurator"
-  Width="435" Height="457"
+  Width="1024" Height="768"
+  Loaded="Window_Loaded"
   WindowStartupLocation="CenterScreen" Padding="0" Margin="0" WindowStyle="SingleBorderWindow" BorderThickness="10,0" Foreground="White" BorderBrush="White" OpacityMask="White">
     <Window.Resources>
         <ResourceDictionary>

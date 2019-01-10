@@ -1,6 +1,7 @@
 ﻿namespace IntelliTraceCPConfig
 {
-    using System.Collections.Generic;
+	using System;
+	using System.Collections.Generic;
     using System.Globalization;
     using System.IO;
     using System.Windows;
@@ -63,9 +64,9 @@
             SaveMenuItem.IsEnabled = false;
         }
 
-        #endregion Constructors
+		#endregion Constructors
 
-        #region Properties
+		#region Properties
 
         public string SelectedPath
         {
@@ -166,53 +167,63 @@
 
             bool? result = dialog.ShowDialog();
             if (result == true)
-            {
-                tabAdvanced.IsEnabled = true;
-                tabModules.IsEnabled = true;
-                grdGeneral.IsEnabled = true;
-                tabEvents.IsEnabled = true;
-                SaveMenuItem.IsEnabled = true;
+			{
+				OpenFile(dialog.FileName);
+			}
+		}
 
-                SelectedPath = dialog.FileName;
+		private void OpenFile(string file)
+		{
+			SelectedPath = file;
+			OpenFile();
+		}
 
-                var root = tree.Items[0] as IntelliTraceCPConfigViewModel;
-                IntelliTraceCPConfigViewModel.FileName = SelectedPath;
-                tree.IsEnabled = true;
-                btnSave.IsEnabled = true;
+		private void OpenFile()
+		{
+			tabAdvanced.IsEnabled = true;
+			tabModules.IsEnabled = true;
+			grdGeneral.IsEnabled = true;
+			tabEvents.IsEnabled = true;
+			SaveMenuItem.IsEnabled = true;
 
-                if (root != null) tree.DataContext = root.ShowFileContent();
-                int fileSize = IntelliTraceCPConfigViewModel.GetFileSizeValue();
 
-                modules = IntelliTraceCPConfigViewModel.GetModuleList();
+			var root = tree.Items[0] as IntelliTraceCPConfigViewModel;
+			IntelliTraceCPConfigViewModel.FileName = SelectedPath;
+			tree.IsEnabled = true;
+			btnSave.IsEnabled = true;
 
-                foreach (string module in modules)
-                {
-                    lstModules.Items.Add(module);
-                }
+			if (root != null) tree.DataContext = root.ShowFileContent();
+			int fileSize = IntelliTraceCPConfigViewModel.GetFileSizeValue();
 
-                //lstModules.ItemsSource = modules;
+			modules = IntelliTraceCPConfigViewModel.GetModuleList();
 
-                bool isExcluded = IntelliTraceCPConfigViewModel.AreModuleExcluded();
+			foreach (string module in modules)
+			{
+				lstModules.Items.Add(module);
+			}
 
-                bool traceInstrumenationEnabled = IntelliTraceCPConfigViewModel.GetTraceInstrumentation();
+			//lstModules.ItemsSource = modules;
 
-                rbEventsOnly.IsChecked = !traceInstrumenationEnabled;
-                rbEventsAndCall.IsChecked = traceInstrumenationEnabled;
+			bool isExcluded = IntelliTraceCPConfigViewModel.AreModuleExcluded();
 
-                rbExcluded.IsChecked = isExcluded;
-                rbIncluded.IsChecked = !isExcluded;
+			bool traceInstrumenationEnabled = IntelliTraceCPConfigViewModel.GetTraceInstrumentation();
 
-                foreach (var itm in _len)
-                {
-                    var citem = new ComboBoxItem { Content = itm.Key };
-                    if (fileSize == itm.Value)
-                        citem.IsSelected = true;
-                    MaxamountRecording.Items.Add(citem);
-                }
-            }
-        }
+			rbEventsOnly.IsChecked = !traceInstrumenationEnabled;
+			rbEventsAndCall.IsChecked = traceInstrumenationEnabled;
 
-        private void RbExcludedChecked(object sender, RoutedEventArgs e)
+			rbExcluded.IsChecked = isExcluded;
+			rbIncluded.IsChecked = !isExcluded;
+
+			foreach (var itm in _len)
+			{
+				var citem = new ComboBoxItem { Content = itm.Key };
+				if (fileSize == itm.Value)
+					citem.IsSelected = true;
+				MaxamountRecording.Items.Add(citem);
+			}
+		}
+
+		private void RbExcludedChecked(object sender, RoutedEventArgs e)
         {
             IntelliTraceCPConfigViewModel.SetModuledExcluded(true);
         }
@@ -247,5 +258,14 @@
         {
             IntelliTraceCPConfigViewModel.SetTraceInstrumentation(false);
         }
-    }
+
+		private void Window_Loaded(object sender, RoutedEventArgs e)
+		{
+			var args = Environment.GetCommandLineArgs();
+			if (args.Length > 1)
+			{
+				OpenFile(args[1]);
+			}
+		}
+	}
 }
